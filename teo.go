@@ -5,18 +5,18 @@ import "encoding/json"
 import "io/ioutil"
 
 type Action struct {
-	Action  string `json:"action"`
+	Action string `json:"action"`
 	ObjName string `json:"object"`
 }
 
 type Teacher struct {
-	ID        string   `json:"id"`
-	Salary    float64  `json:"salary"`
-	Subject   string   `json:"subject"`
+	ID string  `json:"id"`
+	Salary float64 `json:"salary"`
+	Subject string `json:"subject"`
 	Classroom []string `json:"classroom"`
-	Person    struct {
-		Name         string `json:"name"`
-		Surname      string `json:"surname"`
+	Person struct {
+		Name string `json:"name"`
+		Surname string `json:"surname"`
 		PersonalCode string `json:"personalCode"`
 	} `json:"person"`
 }
@@ -49,8 +49,7 @@ type GeneralObject interface {
 type CreateTeacher struct {
 	T Teacher `json:"data"`
 }
-
-func (action *CreateTeacher) GetFromJSON(rawData []byte) {
+func (action *CreateTeacher) GetFromJSON (rawData []byte) {
 	err := json.Unmarshal(rawData, action)
 	if err != nil {
 		fmt.Println(err)
@@ -65,8 +64,7 @@ func (action CreateTeacher) Process() {
 type UpdateTeacher struct {
 	T Teacher `json:"data"`
 }
-
-func (action *UpdateTeacher) GetFromJSON(rawData []byte) {
+func (action *UpdateTeacher) GetFromJSON (rawData []byte) {
 	err := json.Unmarshal(rawData, action)
 	if err != nil {
 		fmt.Println(err)
@@ -74,7 +72,7 @@ func (action *UpdateTeacher) GetFromJSON(rawData []byte) {
 	}
 }
 func (action UpdateTeacher) Process() {
-
+	fmt.Println("Haha")
 }
 
 type ReadTeacher struct {
@@ -82,8 +80,7 @@ type ReadTeacher struct {
 		ID string `json:"id"`
 	} `json:"data"`
 }
-
-func (action *ReadTeacher) GetFromJSON(rawData []byte) {
+func (action *ReadTeacher) GetFromJSON (rawData []byte) {
 	err := json.Unmarshal(rawData, action)
 	if err != nil {
 		fmt.Println(err)
@@ -99,8 +96,7 @@ type DeleteTeacher struct {
 		ID string `json:"id"`
 	} `json:"data"`
 }
-
-func (action *DeleteTeacher) GetFromJSON(rawData []byte) {
+func (action *DeleteTeacher) GetFromJSON (rawData []byte) {
 	err := json.Unmarshal(rawData, action)
 	if err != nil {
 		fmt.Println(err)
@@ -110,6 +106,7 @@ func (action *DeleteTeacher) GetFromJSON(rawData []byte) {
 func (action DeleteTeacher) Process() {
 	fmt.Println("Teacher deleted")
 }
+
 
 func main() {
 	text, err := ioutil.ReadFile("data.json")
@@ -124,6 +121,8 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+
+	fmt.Println("Blabla")
 
 	var obj GeneralObject
 	switch act.ObjName {
