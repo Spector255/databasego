@@ -3,7 +3,6 @@ package main
 import "fmt"
 import "encoding/json"
 import "io/ioutil"
-import "math"
 
 type Action struct {
 	Action string `json:"action"`
@@ -58,7 +57,6 @@ func (action *CreateTeacher) GetFromJSON (rawData []byte) {
 	}
 }
 func (action CreateTeacher) Process() {
-	//add action.T to slice of data
 	fmt.Println(action.T)
 }
 
