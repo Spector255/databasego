@@ -3,6 +3,7 @@ package main
 import "fmt"
 import "encoding/json"
 import "io/ioutil"
+import "math"
 
 type Action struct {
 	Action string `json:"action"`
